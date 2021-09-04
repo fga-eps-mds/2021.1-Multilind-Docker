@@ -1,0 +1,58 @@
+version: "3"
+
+services: 
+  user: 
+    build: 
+      context: ../2021.1-Multilind-user-server/ 
+      dockerfile: Dockerfile
+    command: yarn start
+    depends_on: 
+    - mongo
+    ports:
+      - '3000:3000'
+    volumes: 
+      - ../2021.1-Multilind-user-server:/app/
+      - /app/node_modules
+    env_file:
+      - db.env
+
+  content: 
+    build: 
+      context: ../2021.1-Multilind-content-server/
+      dockerfile: Dockerfile
+    depends_on: 
+      - postgres
+    ports:
+      - '8000:8000'
+    volumes: 
+      - ../2021.1-Multilind-content-server:/app/
+      - /app/node_modules
+
+  files: 
+    build: 
+      context: ../2021.1-Multilind-files-server/
+      dockerfile: Dockerfile
+    command: yarn start
+    ports:
+      - '5000:5000'
+    volumes: 
+      - ../2021.1-Multilind-files-server:/app/
+      - /app/node_modules
+
+  postgres:
+    image: postgres:13
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    env_file: 
+      - db.env
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./mongo:/data/db
+
