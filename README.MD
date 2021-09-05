@@ -23,7 +23,14 @@ Inicialmente, instale localmente as seguintes dependências:
 
 ### Inicialização do Projeto
 
-1. Na pasta principal do projeto, construa e inicialize a aplicação com o comando:
+Antes de mais nada, você deve ter todos os repositórios clonados em sua máquina. Clone os seguintes repositórios e cerifique-se que eles se encontram na mesma pasta: 
+- [Servidor de Conteudo](https://github.com/fga-eps-mds/2021.1-Multilind-content-server)
+- [Servidor Arquivos](https://github.com/fga-eps-mds/2021.1-Multilind-user-server)
+- [Servidor de Usuários](https://github.com/fga-eps-mds/2021.1-Multilind-files-server)
+
+Após clonar todos os repositórios em uma mesma pasta, siga os seguintes passos: 
+
+1. Entre na pasta do projeto Multilind Docker, construa e inicialize a aplicação com o comando:
 
 ```bash
 make build
